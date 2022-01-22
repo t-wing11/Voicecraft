@@ -65,7 +65,7 @@ layout = [  [gui.Push(),gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80),j
                 gui.Button('Start', size=(20, 2), visible=True, font=('Uni Sans-Trial Book', 20)),
                 gui.Push(),
                 gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25)),
-                gui.Combo(['laptop mic','headset'],key='dest',size=(10,1), font =('Uni Sans-Trial Book',20)),
+                gui.Combo(['laptop mic','headset'],key='dest',size=(10,1), font =('Uni Sans-Trial Book',20), enable_events=True),
                 gui.Push(),
             ],
 
@@ -80,8 +80,8 @@ while True:
         break
     if event in ('Start'):
         print('started running')
-    if event in ('Select'):
-        combo = values['device']  # use the combo key
+    if event in ('dest'):
+        combo = values['dest']  # use the combo key
         print(combo)
     if event == 'table':
         data_selected = [data[row+1] for row in values[event]]
