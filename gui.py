@@ -1,5 +1,4 @@
 import PySimpleGUI as gui 
-import os
 import json
 import random
 import string
@@ -18,7 +17,6 @@ for attr, value in controls.items():
         controlKeys.append(val['keys'])
         controlMovement.append(val['movement'])
 
-dir = os.getcwd()
 
 #Create custom theme and add to the list of themes
 gui.theme_add_new('CustomTheme', {'BACKGROUND': '#292929',
@@ -36,10 +34,7 @@ gui.theme_add_new('CustomTheme', {'BACKGROUND': '#292929',
 gui.set_options(font=("Uni Sans-Trial Book", 35))
 gui.theme('CustomTheme')
 
-col_layout = [
-    [gui.Button('Start', size=(20, 2), visible=True, font=('Uni Sans-Trial Book', 20))]
-]
-
+#Table
 top = ["Controls","Key","Movement"]
 
 def make_table(num_rows, num_cols):
@@ -55,17 +50,27 @@ def make_table(num_rows, num_cols):
 data = make_table(len(controlNames), 3)
 headings = [(top[x]) for x in range(len(top))]
 
+#Layout
 layout = [  [gui.Push(),gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80),justification='center'),gui.Push()],
-            [gui.Column(col_layout, element_justification='left', expand_x=True)],
-            [gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25))],
-            [gui.Combo(['Laptop Mic','Headset'],default_value='Laptop Mic',key='device',size=(10,1))],
-            [gui.Button('Select', size=(10, 1), visible=True, font=('Uni Sans-Trial Book', 10))],
+
             [gui.Push(),gui.Table(values=data[1:], headings=headings,size=(150,150),max_col_width=15,font=('Uni Sans-Trial Book',20),
                     justification='center',auto_size_columns=True,
                     num_rows=5,
                     alternating_row_color='#505050',
                     key='table',enable_events=True,
-                    row_height=40),gui.Push()] ]
+                    row_height=40),gui.Push()],
+
+            [
+                gui.Push(),
+                gui.Button('Start', size=(20, 2), visible=True, font=('Uni Sans-Trial Book', 20)),
+                gui.Push(),
+                gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25)),
+                gui.Combo(['laptop mic','headset'],key='dest',size=(10,1), font =('Uni Sans-Trial Book',20)),
+                gui.Push(),
+            ],
+
+            #gui.Image(r'./assets/logo.png',size=(200,200)),gui.Frame(layout=col_layout, element_justification='left', title='')
+        ]
 
 window = gui.Window('',layout, resizable=True, size=(700, 700))
 
@@ -79,7 +84,7 @@ while True:
         combo = values['device']  # use the combo key
         print(combo)
     if event == 'table':
-        data_selected = [data[row] for row in values[event]]
+        data_selected = [data[row+1] for row in values[event]]
         print(data_selected[0])
 
 window.close()
