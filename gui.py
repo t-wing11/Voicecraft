@@ -12,7 +12,7 @@ CustomTheme = {'BACKGROUND': '#292929',
                 'PROGRESS_DEPTH': 0}
 
 gui.theme_add_new('CustomTheme', CustomTheme)
-
+gui.set_options(font=("Times New Roman", 12))
 gui.theme('CustomTheme')
 
 layout = [  
