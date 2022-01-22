@@ -1,0 +1,18 @@
+{
+    "left": {
+        "movement": "-90",
+        "variable": "true"
+    },
+    "right": {
+        "movement": "90",
+        "variable": "true"
+    },
+    "up": {
+        "movement": "0",
+        "variable": "true"
+    },
+    "down": {
+        "movement": "180",
+        "variable": "true"
+    }
+}
