@@ -1,51 +1,91 @@
 {
     "normal": [
         {
-            "name": "left",
+            "name": [
+                "left"
+            ],
             "keys": [
                 "a"
             ],
-            "movement": ""
+            "movement": [
+                ""
+            ]
         },
         {
-            "name": "right",
+            "name": [
+                "go speed"
+            ],
+            "keys": [
+                "w",
+                "space"
+            ],
+            "movement": [
+                ""
+            ]
+        },
+        {
+            "name": [
+                "right"
+            ],
             "keys": [
                 "d"
             ],
-            "movement": ""
+            "movement": [
+                ""
+            ]
         },
         {
-            "name": "forward",
+            "name": [
+                "forward"
+            ],
             "keys": [
                 "w"
             ],
-            "movement": ""
+            "movement": [
+                ""
+            ]
         },
         {
-            "name": "backwards",
+            "name": [
+                "backwards"
+            ],
             "keys": [
                 "s"
             ],
-            "movement": ""
+            "movement": [
+                ""
+            ]
         },
         {
-            "name": "jump",
+            "name": [
+                "jump"
+            ],
             "keys": [
                 "space"
             ],
-            "movement": ""
+            "movement": [
+                ""
+            ]
         }
     ],
-    "variable" : [
+    "variable": [
         {
-            "name": "clockwise",
+            "name": [
+                "clockwise"
+            ],
             "keys": [],
-            "movement": "90"
+            "movement": [
+                "50"
+            ]
         },
         {
-            "name": "counterclockwise",
+            "name": [
+                "counterclockwise"
+            ],
             "keys": [],
-            "movement": "-90 "
+            "movement": [
+                "-90"
+            ]
         }
     ]
 }
