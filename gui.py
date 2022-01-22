@@ -1,7 +1,5 @@
 import PySimpleGUI as gui 
 import json
-import random
-import string
 
 #Get controls
 f = open('controls.json', 'r')
@@ -18,6 +16,27 @@ for attr, value in controls.items():
         controlMovement.append(val['movement'])
 
 startstop = {'text':'Start', 'colour':'green'}
+audioDevices = ['laptop mic','headset']
+
+def addToJson(name, keys, movement, group):
+    f = open('controls.json', 'r')
+    controls = json.load(f)
+    f.close()
+    controls[group].append({'name':name, 'keys':keys, 'movement':movement})
+    f = open('controls.json', 'w')
+    json.dump(controls, f)
+    f.close()
+
+def removeFromJson(name, group):
+    f = open('controls.json', 'r')
+    controls = json.load(f)
+    f.close()
+    for i, item in enumerate(controlNames):
+        if (item == name):
+            controls[group].pop(i)
+    f = open('controls.json', 'w')
+    json.dump(controls, f)
+    f.close()
 
 #Create custom theme and add to the list of themes
 gui.theme_add_new('CustomTheme', {'BACKGROUND': '#292929',
@@ -39,10 +58,10 @@ gui.theme('CustomTheme')
 top = ["Controls","Key","Movement"]
 
 def make_table(num_rows, num_cols):
-    data = [[],[],[],[],[],[],[],[],[],[],[]]
+    data = [[""]*num_cols for i in range(num_rows+1)]
     for i, item in enumerate(controlNames):
         if (controlMovement[i] == ""):
-            controlMovement[i]="           "
+            controlMovement[i]="              "
         data[i+1] = [item, controlKeys[i], controlMovement[i]]
     return data
     
@@ -66,14 +85,14 @@ layout = [  [gui.Push(),gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80),j
                 gui.Button(startstop['text'], size=(20, 2), visible=True, font=('Uni Sans-Trial Book', 20), button_color=startstop['colour'], key='startstop'),
                 gui.Push(),
                 gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25)),
-                gui.Combo(['laptop mic','headset'],key='dest',size=(10,1), font =('Uni Sans-Trial Book',20), enable_events=True),
+                gui.Combo(audioDevices,key='dest',size=(10,1), font =('Uni Sans-Trial Book',20), enable_events=True),
                 gui.Push(),
             ],
 
             #gui.Image(r'./assets/logo.png',size=(200,200)),gui.Frame(layout=col_layout, element_justification='left', title='')
         ]
 
-window = gui.Window('',layout, resizable=True, size=(700, 700))
+window = gui.Window('',layout, resizable=True, size=(700, 700), icon=r'./assets/logo.ico')
 
 while True:
     event, values = window.read()
@@ -90,11 +109,15 @@ while True:
             print('stopped running') # Stop audio program here
         
         window.Element('startstop').Update(button_color=(startstop['colour']), text=startstop['text'])
+
     if event in ('dest'):
-        combo = values['dest'] 
+        combo = audioDevices.index(values['dest'])
         print(combo) # Set device here
     if event == 'table':
         data_selected = [data[row+1] for row in values[event]]
         print(data_selected[0])
 
 window.close()
+
+
+    
