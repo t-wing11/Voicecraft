@@ -101,6 +101,11 @@ layout = [  [gui.Push(),gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80),j
                     key='table',enable_events=True,
                     row_height=40),gui.Push()],
 
+                    [gui.Push(),gui.Button('Add', size=(10, 1), visible=True, font=('Uni Sans-Trial Book', 15), key='adder'),gui.Text('            '),
+            gui.Button('Delete', size=(10, 1), visible=True, font=('Uni Sans-Trial Book', 15),button_color='red', key='delete'),gui.Push()],
+
+            
+
             [
                 gui.Push(),
                 gui.Button(startstop['text'], size=(20, 2), visible=True, font=('Uni Sans-Trial Book', 20), button_color=startstop['colour'], key='startstop'),
@@ -108,10 +113,7 @@ layout = [  [gui.Push(),gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80),j
                 gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25)),
                 gui.Combo(audioDevices,key='dest',size=(10,1), font =('Uni Sans-Trial Book',20), enable_events=True),
                 gui.Push(),
-            ],
-
-            [gui.Button('Add', size=(10, 1), visible=True, font=('Uni Sans-Trial Book', 15), key='adder'),
-            gui.Button('Delete', size=(10, 1), visible=True, font=('Uni Sans-Trial Book', 15),button_color='red', key='delete')]
+            ]
 
             #gui.Image(r'./assets/logo.png',size=(200,200)),gui.Frame(layout=col_layout, element_justification='left', title='')
         ]
