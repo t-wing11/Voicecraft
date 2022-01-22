@@ -5,35 +5,35 @@
             "keys": [
                 "a"
             ],
-            "movement": "None"
+            "movement": ""
         },
         {
             "name": "right",
             "keys": [
                 "d"
             ],
-            "movement": "None"
+            "movement": ""
         },
         {
             "name": "forward",
             "keys": [
                 "w"
             ],
-            "movement": "None"
+            "movement": ""
         },
         {
             "name": "down",
             "keys": [
                 "s"
             ],
-            "movement": "None"
+            "movement": ""
         },
         {
             "name": "jump",
             "keys": [
                 "space"
             ],
-            "movement": "None"
+            "movement": ""
         }
     ],
     "variable" : [
