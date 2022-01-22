@@ -1,4 +1,7 @@
 import PySimpleGUI as gui 
+import os
+
+dir = os.getcwd()
 
 #Create custom theme and add to the list of themes
 gui.theme_add_new('CustomTheme', {'BACKGROUND': '#292929',
@@ -23,6 +26,7 @@ col_layout = [
 layout = [  [gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80))],
             [gui.Column(col_layout, element_justification='left', expand_x=True)],
             [gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25))],
+            [gui.Image(r'' + dir + '\\assets\\logo.png')],
             [gui.Combo(['laptop mic','headset'],key='dest')] ]
 
 window = gui.Window('',layout, resizable=True, size=(700, 700))
