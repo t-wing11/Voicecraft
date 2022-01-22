@@ -1,6 +1,7 @@
 import PySimpleGUI as gui 
 
-CustomTheme = {'BACKGROUND': '#292929',
+#Create custom theme and add to the list of themes
+gui.theme_add_new('CustomTheme', {'BACKGROUND': '#292929',
                 'TEXT': '#fff4c9',
                 'INPUT': '#c7e78b',
                 'TEXT_INPUT': '#000000',
@@ -9,9 +10,9 @@ CustomTheme = {'BACKGROUND': '#292929',
                 'PROGRESS': ('#01826B', '#D0D0D0'),
                 'BORDER': 1,
                 'SLIDER_DEPTH': 0,
-                'PROGRESS_DEPTH': 0}
+                'PROGRESS_DEPTH': 0})
 
-gui.theme_add_new('CustomTheme', CustomTheme)
+#Set options and theme
 gui.set_options(font=("Uni Sans-Trial Book", 35))
 gui.theme('CustomTheme')
 
@@ -21,9 +22,10 @@ col_layout = [
 ]
 
 layout = [  [gui.Text('Voice Craft',font=('Uni Sans-Trial Book',50))],
-            [gui.Column(col_layout, element_justification='right', expand_x=True)] ]
+            [gui.Column(col_layout, element_justification='right', expand_x=True)],
+            [gui.Combo(["apple", "banana", "cucumber"], readonly=True, enable_events=True)] ]
 
-window = gui.Window('',layout, resizable=True)
+window = gui.Window('',layout, resizable=True, size=(700, 700))
 
 while True:
     event, values = window.read()
