@@ -15,17 +15,19 @@ gui.theme_add_new('CustomTheme', CustomTheme)
 gui.set_options(font=("Times New Roman", 12))
 gui.theme('CustomTheme')
 
-layout = [  
-            [gui.Text('Some text on Row 1')],
-            [gui.Text('Enter something on Row 2'), gui.InputText()],
-            [gui.Button('Ok'), gui.Button('Cancel')] ]
+col_layout = [
+    [gui.Text('')],[gui.Text('')],[gui.Text('')],[gui.Text('')],[gui.Text('')],
+    [gui.Button('Start', size=(0, 0), visible=True, font=('Times New Roman', 20))]
+]
 
-window = gui.Window('Window Title', layout)
+layout = [  [gui.Text('Voice Craft',font=('Times New Roman',50))],
+            [gui.Column(col_layout, element_justification='right', expand_x=True)] ]
+
+window = gui.Window('',layout, size = (700,700))
 
 while True:
     event, values = window.read()
-    if event == gui.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
+    if event == gui.WIN_CLOSED: 
         break
-    print('You entered ', values[0])
 
 window.close()
