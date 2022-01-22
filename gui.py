@@ -73,7 +73,8 @@ def open_window():
         if event == gui.WIN_CLOSED:
             break
         if event in ('submit'):
-            print(values[0],values[1],values[2])
+            #TODO: Filter out wrong values
+            addToJson(values[0].split(","), values[1].split(","), values[2].split(","), 'normal')
             break
         
     window.close()
@@ -141,11 +142,15 @@ while True:
         print(combo) # Set device here
     if event in 'table':
         data_selected = [data[row+1] for row in values[event]]
-        
     if event in ('adder'):
         open_window()
 
     if event in ('delete'):
-        print('Deleted',data_selected)    
+        removeFromJson(data_selected[0][0], 'normal')
+        print('Deleted',data_selected)  
+        data = make_table(len(controlNames), 3)
+        window.Element('table').Update(values=data[1:]) 
+        window.refresh()
+        print(data)
 
 window.close()
