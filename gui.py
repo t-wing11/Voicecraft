@@ -22,7 +22,8 @@ col_layout = [
 
 layout = [  [gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80))],
             [gui.Column(col_layout, element_justification='left', expand_x=True)],
-            [gui.Combo(["apple", "banana", "cucumber"], readonly=True, enable_events=True)] ]
+            [gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25))],
+            [gui.Combo(['laptop mic','headset'],key='dest')] ]
 
 window = gui.Window('',layout, resizable=True, size=(700, 700))
 
