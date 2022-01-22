@@ -17,13 +17,13 @@ gui.theme('CustomTheme')
 
 col_layout = [
     [gui.Text('')],[gui.Text('')],[gui.Text('')],[gui.Text('')],[gui.Text('')],
-    [gui.Button('Start', size=(0, 0), visible=True, font=('Times New Roman', 20))]
+    [gui.Button('Start', size=(0, 0), visible=True, font=('Uni Sans-Trial Book', 20))]
 ]
 
-layout = [  [gui.Text('Voice Craft',font=('Times New Roman',50))],
+layout = [  [gui.Text('Voice Craft',font=('Uni Sans-Trial Book',50))],
             [gui.Column(col_layout, element_justification='right', expand_x=True)] ]
 
-window = gui.Window('',layout, size = (700,700))
+window = gui.Window('',layout, resizable=True)
 
 while True:
     event, values = window.read()
