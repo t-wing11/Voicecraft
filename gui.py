@@ -1,5 +1,7 @@
 import PySimpleGUI as gui 
 import os
+import random
+import string
 
 dir = os.getcwd()
 
@@ -24,14 +26,39 @@ col_layout = [
 ]
 
 box_layout = [
-    [gui.Listbox(values=['Welcome Drink', 'Extra Cushions', 'Organic Diet','Blanket', 'Neck Rest'], select_mode='extended', key='fac', size=(60, 9),font=('Uni Sans-Trial Book',15))]
+    [gui.Listbox(values=['Welcome Drink', 'Extra Cushions', 'Organic Diet','Blanket', 'Neck Rest'], select_mode='extended', key='fac', size=(60, 9),font=('Uni Sans-Trial Book',25))]
 ]
+
+def word():
+    return '   Keybind    '
+def number(max_val=1000):
+    return 10
+#def makes_table(num_rows,num_cols):
+ #   for i in range(num_rows-1):
+#
+ #       for j in range(num_cols-1):
+            
+
+def make_table(num_rows, num_cols):
+    data =[ [1,2,3,5,3,3,3,3,3,3],[1,1,1,1,1,1,1,1,1,1] ]
+    return data
+    
+
+# ------ Make the Table Data ------
+data = make_table(105, 3)
+headings = [str(data[0][x]) for x in range(len(data[0]))]
+
 layout = [  [gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80))],
             [gui.Column(col_layout, element_justification='left', expand_x=True)],
             [gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25))],
             #[gui.Image(r'' + dir + '\\assets\\logo.png',size=(200,200))],
-            [gui.Combo(['laptop mic','headset'],key='dest',size=(10,1))],
-            [gui.Column(box_layout,element_justification='center')] ]
+            [gui.Combo(['laptop mic','headset'],key='dest',size=(10,1))],[gui.Text('')],
+            [gui.Push(),gui.Table(values=data[1:], headings=headings,size=(100,100),font=('Uni Sans-Trial Book',20),
+                    justification='center',
+                    num_rows=5,
+                    alternating_row_color='blue',
+                    key='-TABLE-',
+                    row_height=40),gui.Push()] ]
 
 window = gui.Window('',layout, resizable=True, size=(700, 700))
 
