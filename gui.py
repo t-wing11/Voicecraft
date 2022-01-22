@@ -1,6 +1,8 @@
 import PySimpleGUI as gui 
 import os
 import json
+import random
+import string
 
 #Get controls
 f = open('controls.json', 'r')
@@ -13,12 +15,7 @@ for attr, value in controls.items():
     for val in value:
         controlNames.append(val['name'])
         controlKeys.append(val['keys'])
-
-print(controlNames)
-print(controlKeys)
         
-import random
-import string
 
 dir = os.getcwd()
 
@@ -57,7 +54,9 @@ def number(max_val=1000):
             
 
 def make_table(num_rows, num_cols):
-    data =[ [1,2,3,5,3,3,3,3,3,3],[1,1,1,1,1,1,1,1,1,1] ]
+    data = [["Controls", "Key"],[],[],[],[],[],[],[],[],[]]
+    for i, item in enumerate(controlNames):
+        data[i+1] = [item, controlKeys[i]]
     return data
     
 
