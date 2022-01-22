@@ -12,7 +12,7 @@ CustomTheme = {'BACKGROUND': '#292929',
                 'PROGRESS_DEPTH': 0}
 
 gui.theme_add_new('CustomTheme', CustomTheme)
-gui.set_options(font=("Times New Roman", 12))
+gui.set_options(font=("Uni Sans-Trial Book", 35))
 gui.theme('CustomTheme')
 
 col_layout = [
