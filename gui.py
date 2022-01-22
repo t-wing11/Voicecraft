@@ -17,6 +17,7 @@ for attr, value in controls.items():
         controlKeys.append(val['keys'])
         controlMovement.append(val['movement'])
 
+startstop = {'text':'Start', 'colour':'green'}
 
 #Create custom theme and add to the list of themes
 gui.theme_add_new('CustomTheme', {'BACKGROUND': '#292929',
@@ -62,7 +63,7 @@ layout = [  [gui.Push(),gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80),j
 
             [
                 gui.Push(),
-                gui.Button('Start', size=(20, 2), visible=True, font=('Uni Sans-Trial Book', 20)),
+                gui.Button(startstop['text'], size=(20, 2), visible=True, font=('Uni Sans-Trial Book', 20), button_color=startstop['colour'], key='startstop'),
                 gui.Push(),
                 gui.Text('Choose Device',size=(12,1),font =('Uni Sans-Trial Book',25)),
                 gui.Combo(['laptop mic','headset'],key='dest',size=(10,1), font =('Uni Sans-Trial Book',20), enable_events=True),
@@ -78,11 +79,20 @@ while True:
     event, values = window.read()
     if event == gui.WIN_CLOSED: 
         break
-    if event in ('Start'):
-        print('started running')
+    if event in ('startstop'):
+        if (startstop['text'] == 'Start'):
+            startstop['text'] = 'Stop'
+            startstop['colour'] = 'red'
+            print('started running') # Run audio program here
+        else:
+            startstop['text'] = 'Start'
+            startstop['colour'] = 'green'
+            print('stopped running') # Stop audio program here
+        
+        window.Element('startstop').Update(button_color=(startstop['colour']), text=startstop['text'])
     if event in ('dest'):
-        combo = values['dest']  # use the combo key
-        print(combo)
+        combo = values['dest'] 
+        print(combo) # Set device here
     if event == 'table':
         data_selected = [data[row+1] for row in values[event]]
         print(data_selected[0])
