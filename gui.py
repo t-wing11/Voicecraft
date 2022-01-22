@@ -9,9 +9,14 @@ f.close()
 
 controlNames = []
 controlKeys = []
-for control in controls:
-    controlNames.append(control['name'])
-    controlKeys.append(control['key'])
+for attr, value in controls.items():
+    for val in value:
+        controlNames.append(val['name'])
+        controlKeys.append(val['keys'])
+
+print(controlNames)
+print(controlKeys)
+        
 
 dir = os.getcwd()
 

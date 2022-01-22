@@ -3,35 +3,35 @@
         {
             "name": "left",
             "keys": [
-                {"key": "a"}
+                "a"
             ],
             "movement": "None"
         },
         {
             "name": "right",
             "keys": [
-                {"key": "d"}
+                "d"
             ],
             "movement": "None"
         },
         {
             "name": "forward",
             "keys": [
-                {"key": "w"}
+                "w"
             ],
             "movement": "None"
         },
         {
             "name": "down",
             "keys": [
-                {"key": "s"}
+                "s"
             ],
             "movement": "None"
         },
         {
             "name": "jump",
             "keys": [
-                {"key": "space"}
+                "space"
             ],
             "movement": "None"
         }
@@ -39,16 +39,12 @@
     "variable" : [
         {
             "name": "clockwise",
-            "keys": [
-                {"key": "None"}
-            ],
+            "keys": [],
             "movement": "90"
         },
         {
             "name": "counterclockwise",
-            "keys": [
-                {"key": "None"}
-            ],
+            "keys": [],
             "movement": "-90"
         }
     ]
