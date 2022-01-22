@@ -11,11 +11,12 @@ f.close()
 
 controlNames = []
 controlKeys = []
+controlMovement = []
 for attr, value in controls.items():
     for val in value:
         controlNames.append(val['name'])
         controlKeys.append(val['keys'])
-        
+        controlMovement.append(val['movement'])
 
 dir = os.getcwd()
 
@@ -54,9 +55,9 @@ def number(max_val=1000):
             
 
 def make_table(num_rows, num_cols):
-    data = [["Controls", "Key"],[],[],[],[],[],[],[],[],[]]
+    data = [["Controls", "Key", "movement"],[],[],[],[],[],[],[],[],[]]
     for i, item in enumerate(controlNames):
-        data[i+1] = [item, controlKeys[i]]
+        data[i+1] = [item, controlKeys[i], controlMovement[i]]
     return data
     
 
