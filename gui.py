@@ -38,6 +38,27 @@ gui.theme('CustomTheme')
 #Table
 top = ["Controls","Key","Movement"]
 
+data_selected = [[]]
+
+def open_window():
+    layout = [
+        [gui.Push(),gui.Text("Input Phrase",font=("Uni Sans-Trial Book", 20)),gui.Input(do_not_clear=False), gui.T('Not Selected ', size=(32,1),background_color='white', key='blank1'),gui.Push()],
+        [gui.Push(),gui.Text("Input Key",font=("Uni Sans-Trial Book", 20)),gui.Input(do_not_clear=False), gui.T('Not Selected ', size=(32,1),background_color='white', key='blank2'),gui.Push()],
+        [gui.Push(),gui.Text("Input Movement",font=("Uni Sans-Trial Book", 20)),gui.Input(do_not_clear=False), gui.T('Not Selected ', size=(32,1),background_color='white', key='blank3'),gui.Push()],
+        [gui.Button('Enter', size=(10, 1), visible=True, font=('Uni Sans-Trial Book', 10), key='submit')]
+    ]
+    window = gui.Window("", layout, modal=True,size=(500,300))
+    choice = None
+    while True:
+        event, values = window.read()
+        if event == gui.WIN_CLOSED:
+            break
+        if event in ('submit'):
+            print(values[0],values[1],values[2])
+            break
+        
+    window.close()
+
 def make_table(num_rows, num_cols):
     data = [[],[],[],[],[],[],[],[],[],[],[]]
     for i, item in enumerate(controlNames):
@@ -70,6 +91,9 @@ layout = [  [gui.Push(),gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80),j
                 gui.Push(),
             ],
 
+            [gui.Button('Add', size=(10, 1), visible=True, font=('Uni Sans-Trial Book', 15), key='adder'),
+            gui.Button('Delete', size=(10, 1), visible=True, font=('Uni Sans-Trial Book', 15),button_color='red', key='delete')]
+
             #gui.Image(r'./assets/logo.png',size=(200,200)),gui.Frame(layout=col_layout, element_justification='left', title='')
         ]
 
@@ -93,8 +117,13 @@ while True:
     if event in ('dest'):
         combo = values['dest'] 
         print(combo) # Set device here
-    if event == 'table':
+    if event in 'table':
         data_selected = [data[row+1] for row in values[event]]
-        print(data_selected[0])
+        
+    if event in ('adder'):
+        open_window()
+
+    if event in ('delete'):
+        print('Deleted',data_selected)    
 
 window.close()
