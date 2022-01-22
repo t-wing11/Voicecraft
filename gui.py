@@ -17,12 +17,11 @@ gui.set_options(font=("Uni Sans-Trial Book", 35))
 gui.theme('CustomTheme')
 
 col_layout = [
-    [gui.Text('')],[gui.Text('')],[gui.Text('')],[gui.Text('')],[gui.Text('')],
-    [gui.Button('Start', size=(0, 0), visible=True, font=('Uni Sans-Trial Book', 20))]
+    [gui.Button('Start', size=(20, 2), visible=True, font=('Uni Sans-Trial Book', 20))]
 ]
 
-layout = [  [gui.Text('Voice Craft',font=('Uni Sans-Trial Book',50))],
-            [gui.Column(col_layout, element_justification='right', expand_x=True)],
+layout = [  [gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80))],
+            [gui.Column(col_layout, element_justification='left', expand_x=True)],
             [gui.Combo(["apple", "banana", "cucumber"], readonly=True, enable_events=True)] ]
 
 window = gui.Window('',layout, resizable=True, size=(700, 700))
