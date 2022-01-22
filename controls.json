@@ -5,28 +5,28 @@
             "keys": [
                 "a"
             ],
-            "movement": ""
+            "movement": "left"
         },
         {
             "name": "right",
             "keys": [
                 "d"
             ],
-            "movement": ""
+            "movement": "right"
         },
         {
             "name": "forward",
             "keys": [
                 "w"
             ],
-            "movement": ""
+            "movement": "forward"
         },
         {
-            "name": "down",
+            "name": "backwards",
             "keys": [
                 "s"
             ],
-            "movement": ""
+            "movement": "backwards"
         },
         {
             "name": "jump",
@@ -40,7 +40,7 @@
         {
             "name": "clockwise",
             "keys": [],
-            "movement": "90"
+            "movement": " 90"
         },
         {
             "name": "counterclockwise",
