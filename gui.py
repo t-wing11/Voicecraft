@@ -1,5 +1,17 @@
 import PySimpleGUI as gui 
 import os
+import json
+
+#Get controls
+f = open('controls.json', 'r')
+controls = json.load(f)
+f.close()
+
+controlNames = []
+controlKeys = []
+for control in controls:
+    controlNames.append(control['name'])
+    controlKeys.append(control['key'])
 
 dir = os.getcwd()
 
@@ -24,7 +36,7 @@ col_layout = [
 ]
 
 box_layout = [
-    [gui.Listbox(values=['Welcome Drink', 'Extra Cushions', 'Organic Diet','Blanket', 'Neck Rest'], select_mode='extended', key='fac', size=(60, 9),font=('Uni Sans-Trial Book',15))]
+    [gui.Listbox(values=controlNames, select_mode='extended', key='fac', size=(60, 9),font=('Uni Sans-Trial Book',15))]
 ]
 layout = [  [gui.Text('Voice Craft',font=('Uni Sans-Trial Book',80))],
             [gui.Column(col_layout, element_justification='left', expand_x=True)],
