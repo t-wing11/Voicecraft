@@ -1,36 +1,40 @@
 import PySimpleGUI as gui 
 import json
 
-#Get controls
-f = open('controls.json', 'r')
-controls = json.load(f)
-f.close()
+def load_controls():
+    f = open('controls.json', 'r')
+    controls = json.load(f)
+    f.close()
+    return controls
 
-controlNames = []
-controlKeys = []
-controlMovement = []
-for attr, value in controls.items():
-    for val in value:
-        controlNames.append(val['name'])
-        controlKeys.append(val['keys'])
-        controlMovement.append(val['movement'])
+def load_controls_more(controls):
+    controlNames = []
+    controlKeys = []
+    controlMovement = []
+    for attr, value in controls.items():
+        for val in value:
+            controlNames.append(val['name'])
+            controlKeys.append(val['keys'])
+            controlMovement.append(val['movement'])
+    return controlNames, controlKeys, controlMovement
+
+controls = load_controls()
+
+controlNames, controlKeys, controlMovement = load_controls_more(controls)
 
 startstop = {'text':'Start', 'colour':'green'}
 audioDevices = ['laptop mic','headset']
 
 def addToJson(name, keys, movement, group):
-    f = open('controls.json', 'r')
-    controls = json.load(f)
-    f.close()
+    controls = load_controls()
     controls[group].append({'name':name, 'keys':keys, 'movement':movement})
     f = open('controls.json', 'w')
     json.dump(controls, f)
     f.close()
 
 def removeFromJson(name, group):
-    f = open('controls.json', 'r')
-    controls = json.load(f)
-    f.close()
+    controls = load_controls()
+    controlNames, controlKeys, controlMovement = load_controls_more(controls)
     for i, item in enumerate(controlNames):
         if (item == name):
             controls[group].pop(i)
@@ -59,7 +63,7 @@ top = ["Controls","Key","Movement"]
 
 data_selected = [[]]
 
-def open_window():
+def open_window(oldWindow):
     layout = [
         [gui.Push(),gui.Text("Input Phrase",font=("Uni Sans-Trial Book", 20)),gui.Input(do_not_clear=False), gui.T('Not Selected ', size=(32,1),background_color='white', key='blank1'),gui.Push()],
         [gui.Push(),gui.Text("Input Key",font=("Uni Sans-Trial Book", 20)),gui.Input(do_not_clear=False), gui.T('Not Selected ', size=(32,1),background_color='white', key='blank2'),gui.Push()],
@@ -75,6 +79,8 @@ def open_window():
         if event in ('submit'):
             #TODO: Filter out wrong values
             addToJson(values[0].split(","), values[1].split(","), values[2].split(","), 'normal')
+            data.append([values[0], values[1], values[2]])
+            oldWindow.Element('table').Update(values=data[1:]) 
             break
         
     window.close()
@@ -143,14 +149,14 @@ while True:
     if event in 'table':
         data_selected = [data[row+1] for row in values[event]]
     if event in ('adder'):
-        open_window()
-
+        open_window(window)
     if event in ('delete'):
         removeFromJson(data_selected[0][0], 'normal')
-        print('Deleted',data_selected)  
-        data = make_table(len(controlNames), 3)
+        print('Deleted',data_selected[0])  
+        data.remove(data_selected[0])
         window.Element('table').Update(values=data[1:]) 
-        window.refresh()
-        print(data)
+        print('data:', data)
+    if event in ('window'):
+        window.Element('table').Update(values=data[1:])
 
 window.close()
